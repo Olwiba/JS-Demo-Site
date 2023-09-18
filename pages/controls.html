@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Controls</title>
+        <meta name="viewport"
+              content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="icon" href="favicon.ico" type="image/x-icon" />
+        <script type="text/javascript">
+            !function(a,b,c,d,e,f,g,h){a.RaygunObject=e,a[e]=a[e]||function(){
+                (a[e].o=a[e].o||[]).push(arguments)},f=b.createElement(c),g=b.getElementsByTagName(c)[0],
+                f.async=1,f.src=d,g.parentNode.insertBefore(f,g),h=a.onerror,a.onerror=function(b,c,d,f,g){
+                h&&h(b,c,d,f,g),g||(g=new Error(b)),a[e].q=a[e].q||[],a[e].q.push({
+                    e:g})}}(window,document,"script","//cdn.raygun.io/raygun4js/raygun.min.js","rg4js");
+        </script>
+        <!--  Don't forget to update the API key here!  -->
+        <script type="text/javascript">
+            rg4js('apiKey', 'paste_your_api_key_here');
+            rg4js('enableCrashReporting', true);
+            rg4js('enablePulse', true);
+        </script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script type="application/javascript">
+            const triggerError = () => {
+                throw new Error('This is an error');
+            };
+
+            const triggerNavigation = () => {
+                const pages = ['about', 'team', 'settings']
+                window.rg4js('trackEvent', {
+                    type: 'pageView',
+                    path: `/${pages[Math.floor(Math.random() * 3)]}`
+                });
+            };
+
+            async function triggerXhr() {
+                const apiEndpoints = [
+                    'https://collectionapi.metmuseum.org/public/collection/v1/objects?departmentIds=1',
+                    'https://api.thecatapi.com/v1/images/0XYvRd7oD',
+                    'https://bible-api.com/john%203:16'
+                ];
+
+                // get a random endpoint
+                const randomIndex = Math.floor(Math.random() * apiEndpoints.length);
+                const endpoint = apiEndpoints[randomIndex];
+                // perform a fetch on the endpoint
+                try {
+                    const response = await fetch(endpoint);
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    // console log the res
+                    const data = await response.json();
+                    console.log(data);
+                } catch (error) {
+                    console.log(error);
+                }
+            };
+        </script>
+    </head>
+    <body>
+        <div class="bg-white">
+            <div class="relative isolate px-6 pt-14 lg:px-8">
+                <div class="absolute inset-x-0 -top-40 -z-10 transform-gpu overflow-hidden blur-3xl sm:-top-80" aria-hidden="true">
+                    <div class="relative left-[calc(50%-11rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                </div>
+                <div class="mx-auto max-w-2xl py-32 sm:py-48 lg:py-56">
+                    <div class="text-center">
+                        <h1 class="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">Controls 🕹</h1>
+                        <p class="mt-6 text-lg leading-8 text-gray-600">Here you can trigger a few basic Raygun events.</p>
+                        <div class="mt-10 flex items-center justify-center gap-x-6">
+                            <span class="isolate inline-flex rounded-md shadow-sm">
+                              <button type="button" class="relative inline-flex items-center rounded-l-md bg-green-300 px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-green-200 focus:z-10">Trigger Error</button>
+                              <button type="button" class="relative -ml-px inline-flex items-center bg-cyan-300 px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-cyan-200 focus:z-10">Trigger Navigation</button>
+                              <button type="button" class="relative -ml-px inline-flex items-center rounded-r-md bg-violet-300 px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-violet-200 focus:z-10">Trigger XHR</button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute inset-x-0 top-[calc(100%-13rem)] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[calc(100%-30rem)]" aria-hidden="true">
+                    <div class="relative left-[calc(50%+3rem)] aspect-[1155/678] w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%+36rem)] sm:w-[72.1875rem]" style="clip-path: polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

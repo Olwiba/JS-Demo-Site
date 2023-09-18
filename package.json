@@ -1,0 +1,23 @@
+{
+  "name": "js-demo-site",
+  "version": "1.0.0",
+  "description": "A simple demo website, using HTML/CSS/JS.",
+  "scripts": {
+    "start": "node ./server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Olwiba/JS-Demo-Site.git"
+  },
+  "keywords": [],
+  "author": "Olwiba",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Olwiba/JS-Demo-Site/issues"
+  },
+  "homepage": "https://github.com/Olwiba/JS-Demo-Site#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "express-favicon": "^2.0.4"
+  }
+}
