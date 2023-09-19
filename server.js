@@ -6,11 +6,7 @@ const app = express()
 app.use(favicon(__dirname + '/favicon.ico'));
 
 app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/pages/index.html');
-})
-
-app.get('/controls', (req, res) => {
-    res.sendFile(__dirname + '/pages/controls.html');
+    res.sendFile(__dirname + '/index.html');
 })
 
 app.listen(port, () => {
